@@ -5,9 +5,6 @@ library("data.table")
 datos <- data.table::fread(input = "datos/household_power_consumption.txt"
                              , na.strings="?")
 
-# Prevents Scientific Notation
-datos[, Global_active_power := lapply(.SD, as.numeric), .SDcols = c("Global_active_power")]
-
 #enable POSIXct being filtered by time of day
 datos[, dateTime := as.POSIXct(paste(Date, Time), format = "%d/%m/%Y %H:%M:%S")]
 
